@@ -65,3 +65,23 @@ test('generateTrackingCode produces structured IDs', () => {
   const code = generateTrackingCode();
   assert.match(code, /^KIV-2026-\d{4}$/);
 });
+
+import { analyzeSequence } from './scienceData';
+
+test('analyzeSequence correctly computes GC content and base counts for DNA', () => {
+  const dna = 'ATGCATGC';
+  const stats = analyzeSequence(dna);
+  assert.equal(stats.length, 8);
+  assert.equal(stats.gcContent, 50);
+  assert.equal(stats.isValidDna, true);
+  assert.equal(stats.baseCounts['A'], 2);
+  assert.equal(stats.baseCounts['G'], 2);
+});
+
+test('analyzeSequence identifies protein sequences', () => {
+  const protein = 'MKVLAF';
+  const stats = analyzeSequence(protein);
+  assert.equal(stats.isValidProtein, true);
+  assert.equal(stats.length, 6);
+});
+

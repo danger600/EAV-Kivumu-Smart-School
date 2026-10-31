@@ -111,7 +111,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
             </div>
             <h3 className="text-xl sm:text-2xl font-extrabold">Online Admission Application</h3>
             <p className="text-slate-300 text-xs mt-1">
-              Join EAV Kivumu • Rutsiro, Western Province • Technical & Academic Excellence
+              Join EAV Kivumu • Ngororero, Western Province • Technical & Academic Excellence
             </p>
           </div>
           <button
@@ -344,7 +344,7 @@ export const AdmissionModal: React.FC<AdmissionModalProps> = ({
                     required
                     value={formData.previousSchool}
                     onChange={(e) => setFormData({ ...formData, previousSchool: e.target.value })}
-                    placeholder="e.g. GS Kivumu or ES Rutsiro"
+                    placeholder="e.g. GS Kivumu or GS Muhororo Ngororero"
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
                   {errors.previousSchool && (

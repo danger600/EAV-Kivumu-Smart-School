@@ -59,7 +59,7 @@ export const PortalPreviewModal: React.FC<PortalPreviewModalProps> = ({
             app: 'EAV Kivumu Smart School API',
             version: '2.0.0-phase2',
             developer: 'Remmy | L5 SWD',
-            instagram: '@tigernsanz',
+            instagram: '@K.eed__',
             contact: '0795547233',
             uptime: 1420,
           })),
@@ -211,7 +211,7 @@ export const PortalPreviewModal: React.FC<PortalPreviewModalProps> = ({
                     <p><span className="text-slate-500">app:</span> "{apiHealth?.app || 'EAV Kivumu Smart School API'}"</p>
                     <p><span className="text-slate-500">version:</span> "{apiHealth?.version || '2.0.0-phase2'}"</p>
                     <p><span className="text-slate-500">developer:</span> <span className="text-emerald-400 font-bold">"{apiHealth?.developer || 'Remmy | L5 SWD'}"</span></p>
-                    <p><span className="text-slate-500">instagram:</span> <span className="text-amber-400">"{apiHealth?.instagram || '@tigernsanz'}"</span></p>
+                    <p><span className="text-slate-500">instagram:</span> <span className="text-amber-400">"{apiHealth?.instagram || '@K.eed__'}"</span></p>
                     <p><span className="text-slate-500">contact:</span> "{apiHealth?.contact || '0795547233'}"</p>
                     <p><span className="text-slate-500">status:</span> <span className="text-emerald-300">"{apiHealth?.status || 'healthy'}"</span></p>
                   </div>
@@ -454,7 +454,7 @@ export const PortalPreviewModal: React.FC<PortalPreviewModalProps> = ({
         {/* Footer */}
         <div className="bg-slate-50 px-6 py-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="text-slate-600">
-            Developer: <strong className="text-slate-900">Remmy | L5 SWD</strong> • Instagram: <strong className="text-amber-600">@tigernsanz</strong>
+            Developer: <strong className="text-slate-900">Remmy | L5 SWD</strong> • Instagram: <strong className="text-amber-600">@K.eed__</strong>
           </div>
           <button
             onClick={onClose}

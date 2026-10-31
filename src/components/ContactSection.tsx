@@ -151,12 +151,12 @@ export const ContactSection: React.FC = () => {
                   Campus Location
                 </span>
                 <span className="text-xs font-bold text-slate-900 block">
-                  Kivumu, Rutsiro District
+                  Kivumu, Ngororero District
                 </span>
               </div>
             </div>
             <a
-              href="https://maps.google.com/?q=Kivumu+Rutsiro+Rwanda"
+              href="https://maps.google.com/?q=Kivumu+Ngororero+Rwanda"
               target="_blank"
               rel="noreferrer"
               className="w-full text-center py-2 px-3 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold transition flex items-center justify-center gap-1.5"
@@ -330,7 +330,7 @@ export const ContactSection: React.FC = () => {
                   System Architect & Direct Contact:
                 </span>
                 <p className="font-bold text-emerald-300 text-sm">Remmy | L5 SWD</p>
-                <p className="text-xs text-slate-400 font-mono">Instagram: @tigernsanz</p>
+                <p className="text-xs text-slate-400 font-mono">Instagram: @K.eed__</p>
                 <p className="text-xs text-amber-400 font-mono mt-0.5">Telephone: 0795547233</p>
               </div>
             </div>
@@ -342,7 +342,7 @@ export const ContactSection: React.FC = () => {
                 How to Reach EAV Kivumu
               </h4>
               <p className="text-slate-600 text-xs leading-relaxed">
-                Take the paved Western Province corridor connecting Rubavu / Karongi. Disembark at Kivumu center in Rutsiro District. School direction signs lead directly to the main academic campus.
+                Take the paved Western Province corridor connecting Muhanga / Ngororero / Karongi. Disembark at Kivumu center in Ngororero District. School direction signs lead directly to the main academic campus.
               </p>
             </div>
           </div>

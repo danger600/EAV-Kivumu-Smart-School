@@ -1,7 +1,7 @@
 /**
  * EAV Kivumu Smart School - TypeScript Definitions
  * Developed by Remmy | L5 SWD
- * Instagram: @tigernsanz | Contact: 0795547233
+ * Instagram: @K.eed__ | Contact: 0795547233
  */
 
 export type TradeCode = 'SWD' | 'VET' | 'AGR' | 'GEN';

@@ -27,13 +27,13 @@ export const Header: React.FC<HeaderProps> = ({
 
   const navLinks = [
     { name: 'Home', href: '#home' },
-    { name: 'About EAV', href: '#about' },
-    { name: 'Departments & Trades', href: '#departments' },
+    { name: '3D Campus', href: '#virtual-campus' },
+    { name: 'Bioscience Lab', href: '#science-workbench' },
+    { name: 'Gemini AI Suite', href: '#ai-suite' },
+    { name: 'Trades', href: '#departments' },
     { name: 'Facilities', href: '#facilities' },
     { name: 'Admissions', href: '#admissions' },
-    { name: 'News & Events', href: '#news' },
-    { name: 'Contact & Location', href: '#contact' },
-    { name: 'FAQs', href: '#faqs' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (
@@ -48,12 +48,12 @@ export const Header: React.FC<HeaderProps> = ({
             </span>
             <span className="text-slate-600 hidden sm:inline">•</span>
             <a
-              href="https://instagram.com/tigernsanz"
+              href="https://instagram.com/K.eed__"
               target="_blank"
               rel="noreferrer"
               className="text-slate-300 hover:text-white transition flex items-center gap-1"
             >
-              Instagram: <span className="text-amber-400 font-semibold">@tigernsanz</span>
+              Instagram: <span className="text-amber-400 font-semibold">@K.eed__</span>
               <ExternalLink className="w-3 h-3 text-slate-400" />
             </a>
           </div>
@@ -96,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
             </div>
             <p className="text-[11px] text-slate-500 font-medium tracking-wide">
-              École Agro-Vétérinaire • Rutsiro, Western Province
+              École Agro-Vétérinaire • Ngororero, Western Province
             </p>
           </div>
         </a>

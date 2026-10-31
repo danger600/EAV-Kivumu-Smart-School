@@ -1,7 +1,7 @@
 /**
  * EAV Kivumu Smart School - Core Business Logic & Pure Functions
  * Developed by Remmy | L5 SWD
- * Instagram: @tigernsanz | Contact: 0795547233
+ * Instagram: @K.eed__ | Contact: 0795547233
  */
 
 export interface AdmissionFormData {

@@ -5,14 +5,14 @@ export const SCHOOL_INFO = {
   frenchName: 'École Agro-Vétérinaire de Kivumu',
   motto: 'Excellence in Technical Innovation, Agriculture & Veterinary Sciences',
   location: {
-    district: 'Rutsiro District',
+    district: 'Ngororero District',
     province: 'Western Province',
     country: 'Rwanda',
     sector: 'Kivumu',
   },
   established: 1982,
   developer: 'Remmy | L5 SWD',
-  instagram: '@tigernsanz',
+  instagram: '@K.eed__',
   contactPhone: '0795547233',
   contactEmail: 'eavkivumu.school@gmail.com',
   website: 'https://eavkivumu.ac.rw',
@@ -77,7 +77,7 @@ export const DEPARTMENTS: Department[] = [
       labs: 2,
     },
     highlights: [
-      'Hands-on clinical internship in surrounding Rutsiro communities',
+      'Hands-on clinical internship in surrounding Ngororero communities',
       'Modern dairy cattle, swine, and poultry teaching units',
       'Disease surveillance and rabies vaccination field campaigns',
     ],
@@ -163,7 +163,7 @@ export const LEADERSHIP: LeadershipMember[] = [
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
   },
   {
-    name: 'Remmy (@tigernsanz)',
+    name: 'Remmy (@K.eed__)',
     role: 'Lead Systems Developer & L5 SWD Representative',
     qualification: 'Senior Software Developer (L5 SWD)',
     bio: 'Architect behind the EAV Kivumu Smart School digital transformation platform, unifying the public website, database, and portal.',
@@ -236,7 +236,7 @@ export const ANNOUNCEMENTS: SchoolAnnouncement[] = [
     title: 'Phase 2 Smart School Management System Deployment Complete',
     category: 'Notice',
     date: 'October 30, 2026',
-    summary: 'The new full-stack platform with PostgreSQL, Express, and React is live, developed by Remmy | L5 SWD (@tigernsanz).',
+    summary: 'The new full-stack platform with PostgreSQL, Express, and React is live, developed by Remmy | L5 SWD (@K.eed__).',
     content:
       'All administrative departments can now test health indicators, preview role dashboards, and verify admissions in real time.',
     isImportant: true,
@@ -271,7 +271,7 @@ export const FAQS: FAQItem[] = [
   {
     question: 'Who developed this smart school platform?',
     answer:
-      'This smart school system was conceptualized and developed by Remmy | L5 SWD (Instagram: @tigernsanz, contact: 0795547233) as part of EAV Kivumu digital transformation initiative.',
+      'This smart school system was conceptualized and developed by Remmy | L5 SWD (Instagram: @K.eed__, contact: 0795547233) as part of EAV Kivumu digital transformation initiative.',
     category: 'Technical Trades',
   },
 ];

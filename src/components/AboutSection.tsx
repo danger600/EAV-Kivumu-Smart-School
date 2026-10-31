@@ -16,7 +16,7 @@ export const AboutSection: React.FC = () => {
             About EAV Kivumu Smart School
           </h2>
           <p className="text-slate-600 text-base leading-relaxed">
-            Located in scenic <strong className="text-slate-800">Rutsiro District, Western Province</strong>, École Agro-Vétérinaire de Kivumu has been a beacon of excellence for over four decades, preparing skilled Rwandan professionals who lead in technology, sustainable farming, and veterinary health.
+            Located in scenic <strong className="text-slate-800">Ngororero District, Western Province</strong>, École Agro-Vétérinaire de Kivumu has been a beacon of excellence for over four decades, preparing skilled Rwandan professionals who lead in technology, sustainable farming, and veterinary health.
           </p>
         </div>
 

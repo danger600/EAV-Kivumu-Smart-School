@@ -1,6 +1,6 @@
 /**
  * Complete 27 Project Files Repository for EAV Kivumu Smart School (Phase 2)
- * Developed by Remmy | L5 SWD - Instagram: @tigernsanz - Contact: 0795547233
+ * Developed by Remmy | L5 SWD - Instagram: @K.eed__ - Contact: 0795547233
  */
 
 export interface ProjectFile {
@@ -19,7 +19,7 @@ export const PROJECT_FILES: ProjectFile[] = [
     language: 'powershell',
     code: `<#
   EAV Kivumu Smart School - Windows PowerShell Automated Setup Script (Phase 2)
-  Developed by Remmy | L5 SWD - Instagram: @tigernsanz - Contact: 0795547233
+  Developed by Remmy | L5 SWD - Instagram: @K.eed__ - Contact: 0795547233
 #>
 Write-Host "Starting EAV Kivumu Smart School Setup..." -ForegroundColor Cyan
 node --version
@@ -103,7 +103,7 @@ app.get('/api/v1/health', (req, res) => {
     app: 'EAV Kivumu Smart School API',
     version: '2.0.0-phase2',
     developer: 'Remmy | L5 SWD',
-    instagram: '@tigernsanz',
+    instagram: '@K.eed__',
     contact: '0795547233',
     uptime: process.uptime()
   });
@@ -135,7 +135,7 @@ FRONTEND_URL="http://localhost:5173"
 NODE_ENV="development"
 SCHOOL_PHONE="0795547233"
 DEVELOPER="Remmy | L5 SWD"
-INSTAGRAM="@tigernsanz"`,
+INSTAGRAM="@K.eed__"`,
   },
   {
     path: 'src/utils/schoolLogic.ts',

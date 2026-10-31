@@ -2,7 +2,7 @@
 .SYNOPSIS
   EAV Kivumu Smart School - Windows PowerShell Automated Setup Script (Phase 2)
   Developed by Remmy | L5 SWD
-  Instagram: @tigernsanz
+  Instagram: @K.eed__
   Contact: 0795547233
 
 .DESCRIPTION
@@ -14,7 +14,7 @@ Write-Host "==========================================================" -Foregro
 Write-Host "   EAV KIVUMU SMART SCHOOL - PHASE 2 SETUP & DEPLOYMENT" -ForegroundColor Yellow
 Write-Host "   Official School Website & Smart Management Platform" -ForegroundColor White
 Write-Host "   Developed by Remmy | L5 SWD" -ForegroundColor Green
-Write-Host "   Instagram: @tigernsanz | Contact: 0795547233" -ForegroundColor Green
+Write-Host "   Instagram: @K.eed__ | Contact: 0795547233" -ForegroundColor Green
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -75,5 +75,5 @@ Write-Host "   Official School Website: http://localhost:3000 (or 5173)" -Foregr
 Write-Host "   Backend API Health:       http://localhost:3000/api/v1/health" -ForegroundColor White
 Write-Host "   Database Health:          http://localhost:3000/api/v1/health/database" -ForegroundColor White
 Write-Host ""
-Write-Host "For support or additions contact Remmy on 0795547233 or Instagram @tigernsanz" -ForegroundColor Green
+Write-Host "For support or additions contact Remmy on 0795547233 or Instagram @K.eed__" -ForegroundColor Green
 Write-Host "==========================================================" -ForegroundColor Cyan

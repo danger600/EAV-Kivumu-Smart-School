@@ -45,12 +45,12 @@ export const Footer: React.FC<FooterProps> = ({
 
           <div className="flex flex-wrap items-center gap-3 text-xs">
             <a
-              href="https://instagram.com/tigernsanz"
+              href="https://instagram.com/K.eed__"
               target="_blank"
               rel="noreferrer"
               className="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-amber-400 font-semibold border border-slate-700 flex items-center gap-1.5 transition"
             >
-              <span>Instagram: @tigernsanz</span>
+              <span>Instagram: @K.eed__</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
 
@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({
                   EAV KIVUMU SMART SCHOOL
                 </span>
                 <p className="text-[11px] text-slate-400">
-                  École Agro-Vétérinaire de Kivumu • Rutsiro, Rwanda
+                  École Agro-Vétérinaire de Kivumu • Ngororero, Rwanda
                 </p>
               </div>
             </div>
@@ -100,7 +100,7 @@ export const Footer: React.FC<FooterProps> = ({
 
             <div className="flex items-center gap-2 pt-2 text-xs text-slate-400 font-mono">
               <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Kivumu Sector, Rutsiro District, Western Province</span>
+              <span>Kivumu Sector, Ngororero District, Western Province</span>
             </div>
           </div>
 
@@ -224,7 +224,7 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="mt-12 pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
           <p>© 2026 EAV Kivumu Smart School. All rights reserved. Western Province, Rwanda.</p>
           <p className="flex items-center gap-1">
-            Engineered with pride by <span className="text-slate-300 font-semibold">Remmy | L5 SWD</span> (<span className="text-amber-400">@tigernsanz</span>)
+            Engineered with pride by <span className="text-slate-300 font-semibold">Remmy | L5 SWD</span> (<span className="text-amber-400">@K.eed__</span>)
           </p>
         </div>
       </div>

@@ -21,7 +21,7 @@ export const FacilitiesSection: React.FC = () => {
             World-Class Learning Facilities
           </h2>
           <p className="text-slate-400 text-base leading-relaxed">
-            Practical skills require cutting-edge equipment. Discover EAV Kivumu’s modern software laboratories, veterinary clinics, demonstration farms, and living spaces in Rutsiro.
+            Practical skills require cutting-edge equipment. Discover EAV Kivumu’s modern software laboratories, veterinary clinics, demonstration farms, and living spaces in Ngororero.
           </p>
         </div>
 

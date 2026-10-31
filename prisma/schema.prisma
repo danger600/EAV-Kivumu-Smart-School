@@ -1,6 +1,6 @@
 // EAV Kivumu Smart School - Prisma Database Schema
 // Phase 2: PostgreSQL Database Architecture & Models
-// Developed by Remmy | L5 SWD - Instagram: @tigernsanz - Contact: 0795547233
+// Developed by Remmy | L5 SWD - Instagram: @K.eed__ - Contact: 0795547233
 
 generator client {
   provider = "prisma-client-js"
@@ -77,7 +77,7 @@ model UserProfile {
   dateOfBirth    DateTime?
   gender         String?
   address        String?
-  district       String?   @default("Rutsiro")
+  district       String?   @default("Ngororero")
   province       String?   @default("Western Province")
   emergencyPhone String?
   bio            String?

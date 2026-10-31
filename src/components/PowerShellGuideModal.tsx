@@ -110,7 +110,7 @@ export const PowerShellGuideModal: React.FC<PowerShellGuideModalProps> = ({
                 Phase 2 Deployment Console
               </span>
               <span className="text-slate-600">|</span>
-              <span className="text-xs text-amber-400 font-mono">Remmy | L5 SWD (@tigernsanz)</span>
+              <span className="text-xs text-amber-400 font-mono">Remmy | L5 SWD (@K.eed__)</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-extrabold mt-1 text-white">
               Windows PowerShell Commands & Source Files

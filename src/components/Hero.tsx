@@ -210,7 +210,7 @@ export const Hero: React.FC<HeroProps> = ({
                 <div>
                   <p className="text-xs font-semibold text-white">Platform Architect</p>
                   <p className="text-[11px] text-emerald-300">Developed by Remmy | L5 SWD</p>
-                  <p className="text-[10px] text-amber-400 font-mono">Instagram: @tigernsanz</p>
+                  <p className="text-[10px] text-amber-400 font-mono">Instagram: @K.eed__</p>
                 </div>
                 <div className="text-right">
                   <span className="inline-block text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
