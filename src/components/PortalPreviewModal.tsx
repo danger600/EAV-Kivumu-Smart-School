@@ -22,11 +22,13 @@ import { ApiHealthResponse, DatabaseHealthResponse } from '../types';
 interface PortalPreviewModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenStudentDashboard?: () => void;
 }
 
 export const PortalPreviewModal: React.FC<PortalPreviewModalProps> = ({
   isOpen,
   onClose,
+  onOpenStudentDashboard,
 }) => {
   const [activeTab, setActiveTab] = useState<'login' | 'register' | 'roles' | 'health'>('health');
   const [selectedRole, setSelectedRole] = useState('SUPER_ADMIN');
@@ -280,6 +282,24 @@ export const PortalPreviewModal: React.FC<PortalPreviewModalProps> = ({
                   Role-based authentication with bcrypt hashing & JWT sessions
                 </p>
               </div>
+
+              {onOpenStudentDashboard && (
+                <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs flex items-center justify-between gap-3">
+                  <div>
+                    <span className="font-bold text-emerald-900 block">Are you an enrolled student?</span>
+                    <span className="text-emerald-700 text-[11px]">Access your personal grades, enrolled courses & Firebase Auth dashboard.</span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      onClose();
+                      onOpenStudentDashboard();
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shrink-0 transition"
+                  >
+                    Open Student Portal
+                  </button>
+                </div>
+              )}
 
               {loginFeedback && (
                 <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs">

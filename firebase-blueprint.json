@@ -1,0 +1,162 @@
+{
+  "entities": {
+    "StudentProfile": {
+      "title": "StudentProfile",
+      "description": "Student profile and academic progress record linked to Firebase Auth UID",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the student"
+        },
+        "studentId": {
+          "type": "string",
+          "description": "Institutional Student Registration Number"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Full name of the student"
+        },
+        "email": {
+          "type": "string",
+          "description": "Student school or personal email"
+        },
+        "tradeCode": {
+          "type": "string",
+          "description": "Enrolled TVET Trade: SWD, VET, AGR, GEN"
+        },
+        "level": {
+          "type": "number",
+          "description": "RTB Academic Level (e.g. Level 3, 4, or 5)"
+        },
+        "gpa": {
+          "type": "number",
+          "description": "Cumulative GPA on 4.0 scale"
+        },
+        "creditsEarned": {
+          "type": "number",
+          "description": "Completed TVET modular credits"
+        },
+        "totalCredits": {
+          "type": "number",
+          "description": "Total required credits for graduation"
+        },
+        "attendanceRate": {
+          "type": "number",
+          "description": "Term attendance percentage"
+        },
+        "term": {
+          "type": "string",
+          "description": "Current academic term"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp of last update"
+        }
+      },
+      "required": ["userId", "studentId", "fullName", "email", "tradeCode", "level", "gpa"]
+    },
+    "EnrolledCourse": {
+      "title": "EnrolledCourse",
+      "description": "Course in which the student is currently enrolled",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of student"
+        },
+        "code": {
+          "type": "string",
+          "description": "Course code (e.g. SWD501)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Full course title"
+        },
+        "instructor": {
+          "type": "string",
+          "description": "Lead instructor name"
+        },
+        "credits": {
+          "type": "number",
+          "description": "Credit units"
+        },
+        "progressPercent": {
+          "type": "number",
+          "description": "Syllabus completion percentage"
+        },
+        "currentGrade": {
+          "type": "string",
+          "description": "Current letter or numerical score"
+        },
+        "schedule": {
+          "type": "string",
+          "description": "Weekly timetable slot"
+        },
+        "room": {
+          "type": "string",
+          "description": "Classroom or workshop location"
+        }
+      },
+      "required": ["userId", "code", "title", "credits"]
+    },
+    "GradeNotification": {
+      "title": "GradeNotification",
+      "description": "Academic grade notice and lecturer feedback for a student",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of student recipient"
+        },
+        "courseCode": {
+          "type": "string",
+          "description": "Course code related to the grade"
+        },
+        "assessmentTitle": {
+          "type": "string",
+          "description": "Exam or assignment name"
+        },
+        "score": {
+          "type": "number",
+          "description": "Obtained score"
+        },
+        "maxScore": {
+          "type": "number",
+          "description": "Maximum possible score"
+        },
+        "gradeLetter": {
+          "type": "string",
+          "description": "Grade letter e.g. A, B+, etc."
+        },
+        "feedback": {
+          "type": "string",
+          "description": "Lecturer comments and feedback"
+        },
+        "isRead": {
+          "type": "boolean",
+          "description": "Whether student has viewed notification"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp notification was generated"
+        }
+      },
+      "required": ["userId", "courseCode", "assessmentTitle", "score", "maxScore", "isRead"]
+    }
+  },
+  "firestore": {
+    "/students/{userId}": {
+      "schema": "StudentProfile",
+      "description": "Student profile and overall academic progress document keyed by Firebase Auth UID"
+    },
+    "/students/{userId}/courses/{courseId}": {
+      "schema": "EnrolledCourse",
+      "description": "Enrolled courses subcollection for the student"
+    },
+    "/students/{userId}/notifications/{notificationId}": {
+      "schema": "GradeNotification",
+      "description": "Grade notifications and alerts subcollection for the student"
+    }
+  }
+}

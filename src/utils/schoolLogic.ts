@@ -147,3 +147,88 @@ export function checkRoleAccess(
   const allowed = permissionsMap[role] || [];
   return allowed.includes(permission);
 }
+
+/**
+ * Calculates weighted cumulative GPA from course credits and grade points
+ */
+export function calculateCumulativeGPA(courses: Array<{ credits: number; gpa: number }>): number {
+  if (!courses.length) return 0.0;
+  let totalWeighted = 0;
+  let totalCredits = 0;
+
+  for (const c of courses) {
+    if (c.credits > 0 && c.gpa >= 0) {
+      totalWeighted += c.credits * c.gpa;
+      totalCredits += c.credits;
+    }
+  }
+
+  if (totalCredits === 0) return 0.0;
+  return Math.round((totalWeighted / totalCredits) * 100) / 100;
+}
+
+/**
+ * Calculates academic completion percentage
+ */
+export function calculateProgressPercentage(earned: number, total: number): number {
+  if (total <= 0 || earned < 0) return 0;
+  const pct = Math.round((earned / total) * 100);
+  return Math.min(100, Math.max(0, pct));
+}
+
+/**
+ * Returns RTB qualification competency level descriptor
+ */
+export function getRTBCompetencyLevel(gpa: number): {
+  title: string;
+  badgeClass: string;
+  description: string;
+} {
+  if (gpa >= 3.6) {
+    return {
+      title: 'Distinction (First Class TVET Honors)',
+      badgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+      description: 'Mastery of advanced vocational and technical competencies exceeding RTB benchmarks.',
+    };
+  }
+  if (gpa >= 3.0) {
+    return {
+      title: 'Credit (Upper Division)',
+      badgeClass: 'bg-teal-100 text-teal-800 border-teal-300',
+      description: 'Solid practical skills with high proficiency across trade laboratory assignments.',
+    };
+  }
+  if (gpa >= 2.0) {
+    return {
+      title: 'Satisfactory (Pass Standard)',
+      badgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+      description: 'Meets minimum National Qualifications Framework requirements.',
+    };
+  }
+  return {
+    title: 'Needs Remedial Intervention',
+    badgeClass: 'bg-rose-100 text-rose-800 border-rose-300',
+    description: 'Requires targeted workshop tutorials and academic re-sit evaluation.',
+  };
+}
+
+/**
+ * Filters grade notifications by unread state or high urgency
+ */
+export function filterGradeNotifications<T extends { isRead: boolean; score: number; maxScore: number }>(
+  notifications: T[],
+  filter: 'all' | 'unread' | 'high_priority'
+): T[] {
+  if (filter === 'unread') {
+    return notifications.filter((n) => !n.isRead);
+  }
+  if (filter === 'high_priority') {
+    // Flag if score is below 60% or above 90% (exceptional)
+    return notifications.filter((n) => {
+      const pct = (n.score / (n.maxScore || 100)) * 100;
+      return pct < 60 || pct >= 90;
+    });
+  }
+  return notifications;
+}
+

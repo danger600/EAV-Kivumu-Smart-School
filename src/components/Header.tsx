@@ -16,12 +16,14 @@ interface HeaderProps {
   onOpenPortal: () => void;
   onOpenPowerShell: () => void;
   onOpenAdmission: () => void;
+  onOpenStudentDashboard: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenPortal,
   onOpenPowerShell,
   onOpenAdmission,
+  onOpenStudentDashboard,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -117,12 +119,21 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Action Buttons */}
         <div className="hidden sm:flex items-center gap-2.5">
           <button
+            onClick={onOpenStudentDashboard}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 transition border border-emerald-300 shadow-2xs"
+            title="Open Secure Student Academic Progress & Grades Dashboard"
+          >
+            <GraduationCap className="w-4 h-4 text-emerald-600" />
+            <span>Student Dashboard</span>
+          </button>
+
+          <button
             onClick={onOpenPowerShell}
             className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 transition border border-slate-300/70"
             title="Open Windows PowerShell Setup Guide & Files"
           >
             <Terminal className="w-4 h-4 text-emerald-600" />
-            <span>PowerShell Setup</span>
+            <span>PowerShell</span>
           </button>
 
           <button
@@ -138,7 +149,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white transition shadow-xs"
           >
             <ShieldCheck className="w-4 h-4 text-amber-400" />
-            <span>Portal Login</span>
+            <span>Portal</span>
           </button>
         </div>
 
@@ -155,6 +166,17 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Mobile dropdown */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 shadow-xl">
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenStudentDashboard();
+            }}
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg bg-emerald-50 text-emerald-800 text-xs font-extrabold border border-emerald-300 shadow-2xs"
+          >
+            <GraduationCap className="w-4 h-4 text-emerald-600" />
+            <span>My Student Dashboard (Grades & Courses)</span>
+          </button>
+
           <div className="grid grid-cols-2 gap-2 pb-3 border-b border-slate-100">
             <button
               onClick={() => {

@@ -19,12 +19,14 @@ interface HeroProps {
   onOpenPortal: () => void;
   onOpenPowerShell: () => void;
   onOpenAdmission: () => void;
+  onOpenStudentDashboard?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   onOpenPortal,
   onOpenPowerShell,
   onOpenAdmission,
+  onOpenStudentDashboard,
 }) => {
   const [apiStatus, setApiStatus] = useState<{
     healthy: boolean;
@@ -109,6 +111,16 @@ export const Hero: React.FC<HeroProps> = ({
                 <ArrowRight className="w-4 h-4" />
               </button>
 
+              {onOpenStudentDashboard && (
+                <button
+                  onClick={onOpenStudentDashboard}
+                  className="px-5 py-3.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 font-bold text-sm sm:text-base border border-emerald-500/40 flex items-center gap-2 transition"
+                >
+                  <Award className="w-5 h-5 text-emerald-400" />
+                  Student Dashboard
+                </button>
+              )}
+
               <button
                 onClick={onOpenPortal}
                 className="px-5 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm sm:text-base border border-slate-700 flex items-center gap-2 transition"
@@ -123,7 +135,7 @@ export const Hero: React.FC<HeroProps> = ({
                 title="View full 27 files & PowerShell run commands"
               >
                 <Terminal className="w-4 h-4 text-emerald-400" />
-                PowerShell Setup (Remmy)
+                PowerShell Setup
               </button>
             </div>
 

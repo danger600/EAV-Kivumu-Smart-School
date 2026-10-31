@@ -1,0 +1,91 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default Deny Catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Validation helper for StudentProfile
+    function isValidStudentProfile(data, userId) {
+      return data.keys().hasAll(['userId', 'studentId', 'fullName', 'email', 'tradeCode', 'level', 'gpa'])
+        && data.userId == userId
+        && data.studentId is string && data.studentId.size() <= 64
+        && data.fullName is string && data.fullName.size() <= 128
+        && data.email is string && data.email.size() <= 128
+        && data.tradeCode is string && data.tradeCode.size() <= 10
+        && data.level is number && data.level >= 1 && data.level <= 7
+        && data.gpa is number && data.gpa >= 0.0 && data.gpa <= 4.0;
+    }
+
+    // Validation helper for EnrolledCourse
+    function isValidCourse(data, userId) {
+      return data.keys().hasAll(['userId', 'code', 'title', 'credits'])
+        && data.userId == userId
+        && data.code is string && data.code.size() <= 20
+        && data.title is string && data.title.size() <= 120
+        && data.credits is number && data.credits >= 1 && data.credits <= 30;
+    }
+
+    // Validation helper for GradeNotification
+    function isValidNotification(data, userId) {
+      return data.keys().hasAll(['userId', 'courseCode', 'assessmentTitle', 'score', 'maxScore', 'isRead'])
+        && data.userId == userId
+        && data.courseCode is string && data.courseCode.size() <= 20
+        && data.assessmentTitle is string && data.assessmentTitle.size() <= 120
+        && data.score is number && data.maxScore is number
+        && data.isRead is bool;
+    }
+
+    // Student Master Record
+    match /students/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isOwner(userId) && isValidId(userId) && isValidStudentProfile(incoming(), userId);
+      allow update: if isOwner(userId) && isValidId(userId) && isValidStudentProfile(incoming(), userId)
+        && incoming().userId == existing().userId;
+      allow delete: if false;
+
+      // Student Enrolled Courses Subcollection
+      match /courses/{courseId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(courseId) && isValidCourse(incoming(), userId);
+        allow update: if isOwner(userId) && isValidId(courseId) && isValidCourse(incoming(), userId)
+          && incoming().userId == existing().userId;
+        allow delete: if isOwner(userId);
+      }
+
+      // Student Grade Notifications Subcollection
+      match /notifications/{notificationId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(notificationId) && isValidNotification(incoming(), userId);
+        allow update: if isOwner(userId) && isValidId(notificationId) && isValidNotification(incoming(), userId)
+          && incoming().userId == existing().userId
+          && incoming().diff(existing()).affectedKeys().hasOnly(['isRead']);
+        allow delete: if isOwner(userId);
+      }
+    }
+  }
+}

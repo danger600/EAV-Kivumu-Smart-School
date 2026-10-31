@@ -85,3 +85,46 @@ test('analyzeSequence identifies protein sequences', () => {
   assert.equal(stats.length, 6);
 });
 
+import {
+  calculateCumulativeGPA,
+  calculateProgressPercentage,
+  getRTBCompetencyLevel,
+  filterGradeNotifications,
+} from './schoolLogic';
+
+test('calculateCumulativeGPA calculates weighted grade point average', () => {
+  const courses = [
+    { credits: 5, gpa: 4.0 }, // 20
+    { credits: 5, gpa: 3.0 }, // 15
+    { credits: 10, gpa: 3.5 }, // 35 -> total 70 / 20 = 3.5
+  ];
+  const gpa = calculateCumulativeGPA(courses);
+  assert.equal(gpa, 3.5);
+});
+
+test('calculateProgressPercentage clamps between 0 and 100', () => {
+  assert.equal(calculateProgressPercentage(45, 60), 75);
+  assert.equal(calculateProgressPercentage(70, 60), 100);
+  assert.equal(calculateProgressPercentage(-5, 60), 0);
+});
+
+test('getRTBCompetencyLevel returns appropriate descriptor for honors GPA', () => {
+  const level = getRTBCompetencyLevel(3.85);
+  assert.match(level.title, /Distinction/);
+  assert.match(level.badgeClass, /emerald/);
+});
+
+test('filterGradeNotifications filters unread and high priority items', () => {
+  const notifs = [
+    { id: '1', isRead: false, score: 95, maxScore: 100 },
+    { id: '2', isRead: true, score: 75, maxScore: 100 },
+    { id: '3', isRead: false, score: 55, maxScore: 100 },
+  ];
+  const unread = filterGradeNotifications(notifs, 'unread');
+  assert.equal(unread.length, 2);
+
+  const highPriority = filterGradeNotifications(notifs, 'high_priority');
+  assert.equal(highPriority.length, 2); // 95% and 55%
+});
+
+

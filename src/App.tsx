@@ -23,14 +23,16 @@ import { PowerShellGuideModal } from './components/PowerShellGuideModal';
 import { ThreeCampusViewer } from './components/ThreeCampusViewer';
 import { ScienceWorkbench } from './components/ScienceWorkbench';
 import { GeminiAISuite } from './components/GeminiAISuite';
+import { StudentDashboard } from './components/StudentDashboard';
 import { TradeCode } from './types';
-import { Phone, MessageCircle, Terminal } from 'lucide-react';
+import { Phone, MessageCircle, Terminal, GraduationCap } from 'lucide-react';
 import { formatContactUrl } from './utils/schoolLogic';
 
 export default function App() {
   const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
   const [isPortalOpen, setIsPortalOpen] = useState(false);
   const [isPowerShellOpen, setIsPowerShellOpen] = useState(false);
+  const [isStudentDashboardOpen, setIsStudentDashboardOpen] = useState(false);
   const [selectedTrade, setSelectedTrade] = useState<TradeCode>('SWD');
 
   const handleOpenAdmissionWithTrade = (trade: TradeCode) => {
@@ -45,6 +47,7 @@ export default function App() {
         onOpenAdmission={() => setIsAdmissionOpen(true)}
         onOpenPortal={() => setIsPortalOpen(true)}
         onOpenPowerShell={() => setIsPowerShellOpen(true)}
+        onOpenStudentDashboard={() => setIsStudentDashboardOpen(true)}
       />
 
       {/* Main Landing Page Content */}
@@ -53,6 +56,7 @@ export default function App() {
           onOpenAdmission={() => setIsAdmissionOpen(true)}
           onOpenPortal={() => setIsPortalOpen(true)}
           onOpenPowerShell={() => setIsPowerShellOpen(true)}
+          onOpenStudentDashboard={() => setIsStudentDashboardOpen(true)}
         />
 
         {/* 1. Interactive 3D Virtual Campus (Three.js Skill) */}
@@ -104,6 +108,18 @@ export default function App() {
       {/* Floating Action Buttons for PowerShell Guide & WhatsApp Hotline 0795547233 */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-2.5 items-end">
         <button
+          onClick={() => setIsStudentDashboardOpen(true)}
+          className="h-11 px-3.5 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white shadow-lg border border-emerald-500/50 flex items-center gap-2 transition hover:scale-105"
+          title="Open Secure Student Academic Progress & Grades"
+          aria-label="Open Student Dashboard"
+        >
+          <GraduationCap className="w-4 h-4 text-emerald-200" />
+          <span className="text-xs font-bold text-white">
+            Student Dashboard
+          </span>
+        </button>
+
+        <button
           onClick={() => setIsPowerShellOpen(true)}
           className="h-11 px-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white shadow-lg border border-slate-700 flex items-center gap-2 transition hover:scale-105"
           title="Windows PowerShell Commands & Files"
@@ -131,6 +147,11 @@ export default function App() {
       </div>
 
       {/* Modals */}
+      <StudentDashboard
+        isOpen={isStudentDashboardOpen}
+        onClose={() => setIsStudentDashboardOpen(false)}
+      />
+
       <AdmissionModal
         isOpen={isAdmissionOpen}
         onClose={() => setIsAdmissionOpen(false)}
@@ -140,6 +161,7 @@ export default function App() {
       <PortalPreviewModal
         isOpen={isPortalOpen}
         onClose={() => setIsPortalOpen(false)}
+        onOpenStudentDashboard={() => setIsStudentDashboardOpen(true)}
       />
 
       <PowerShellGuideModal
