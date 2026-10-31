@@ -1,0 +1,6 @@
+{
+  "name": "EAV Kivumu Smart School",
+  "description": "Official website and smart school management platform foundation for EAV Kivumu. Developed by Remmy | L5 SWD (@tigernsanz), contact 0795547233.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

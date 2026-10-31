@@ -1,0 +1,235 @@
+// EAV Kivumu Smart School - Prisma Database Schema
+// Phase 2: PostgreSQL Database Architecture & Models
+// Developed by Remmy | L5 SWD - Instagram: @tigernsanz - Contact: 0795547233
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RoleType {
+  SUPER_ADMIN
+  ADMIN
+  HEADMASTER
+  DEAN_OF_STUDIES
+  DISCIPLINE_MASTER
+  ACCOUNTANT_BURSAR
+  LIBRARIAN
+  HEAD_OF_DEPARTMENT
+  TEACHER
+  STUDENT
+  PARENT
+  LAB_TECHNICIAN
+  STORE_KEEPER
+  NURSE
+  SECURITY_CHIEF
+  SECRETARY
+  ALUMNI
+}
+
+enum ApplicationStatus {
+  PENDING
+  UNDER_REVIEW
+  ACCEPTED
+  REJECTED
+  WAITLISTED
+}
+
+enum TradeCategory {
+  SOFTWARE_DEVELOPMENT    // SWD (L3, L4, L5)
+  VETERINARY              // VET (L3, L4, L5)
+  AGRICULTURE_CROP        // AGR (L3, L4, L5)
+  GENERAL_O_LEVEL         // O'Level S1-S3
+}
+
+model User {
+  id             String       @id @default(uuid())
+  email          String       @unique
+  phone          String?      @unique
+  passwordHash   String
+  firstName      String
+  lastName       String
+  role           RoleType     @default(STUDENT)
+  isActive       Boolean      @default(false) // New accounts require activation approval
+  isVerified     Boolean      @default(false)
+  avatarUrl      String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  profile        UserProfile?
+  student        Student?
+  teacher        Teacher?
+  auditLogs      AuditLog[]
+
+  @@index([role, isActive])
+  @@map("users")
+}
+
+model UserProfile {
+  id             String    @id @default(uuid())
+  userId         String    @unique
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nationalId     String?   @unique
+  dateOfBirth    DateTime?
+  gender         String?
+  address        String?
+  district       String?   @default("Rutsiro")
+  province       String?   @default("Western Province")
+  emergencyPhone String?
+  bio            String?
+
+  @@map("user_profiles")
+}
+
+model Department {
+  id          String         @id @default(uuid())
+  code        String         @unique // e.g. "SWD", "VET", "AGR", "GEN"
+  name        String
+  description String
+  category    TradeCategory
+  headOfDept  String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  courses     Course[]
+  students    Student[]
+  teachers    Teacher[]
+
+  @@map("departments")
+}
+
+model Course {
+  id           String        @id @default(uuid())
+  code         String        @unique // e.g. "SWD-501", "VET-402"
+  title        String
+  level        Int           // 3, 4, or 5
+  credits      Int           @default(10)
+  departmentId String
+  department   Department    @relation(fields: [departmentId], references: [id])
+  description  String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  grades       Grade[]
+
+  @@map("courses")
+}
+
+model Student {
+  id             String          @id @default(uuid())
+  registrationNo String          @unique // e.g. "EAV/2026/SWD/042"
+  userId         String          @unique
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  departmentId   String
+  department     Department      @relation(fields: [departmentId], references: [id])
+  level          Int             @default(5) // Level 3, 4, 5
+  classRoom      String          // e.g. "L5 SWD A"
+  parentName     String?
+  parentPhone    String?
+  boardingStatus String          @default("BOARDER") // BOARDER or DAY_SCHOLAR
+  enrollmentDate DateTime        @default(now())
+
+  attendances    Attendance[]
+  grades         Grade[]
+
+  @@map("students")
+}
+
+model Teacher {
+  id             String      @id @default(uuid())
+  staffNumber    String      @unique // e.g. "T-EAV-018"
+  userId         String      @unique
+  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  departmentId   String
+  department     Department  @relation(fields: [departmentId], references: [id])
+  qualification  String      // e.g. "BSc Software Engineering"
+  specialization String      // e.g. "Web & Mobile Systems"
+  hireDate       DateTime    @default(now())
+
+  @@map("teachers")
+}
+
+model AdmissionApplication {
+  id             String            @id @default(uuid())
+  trackingCode   String            @unique // e.g. "KIV-2026-9821"
+  firstName      String
+  lastName       String
+  email          String
+  phone          String
+  dateOfBirth    String
+  gender         String
+  desiredTrade   TradeCategory
+  levelApplied   Int               @default(5)
+  previousSchool String
+  aggregateScore Float?
+  guardianName   String
+  guardianPhone  String
+  guardianEmail  String?
+  status         ApplicationStatus @default(PENDING)
+  notes          String?
+  submittedAt    DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@index([status, desiredTrade])
+  @@map("admission_applications")
+}
+
+model Announcement {
+  id          String   @id @default(uuid())
+  title       String
+  content     String
+  category    String   // "ACADEMIC", "SPORTS", "ADMIN", "EVENT"
+  isPublic    Boolean  @default(true)
+  authorName  String   @default("School Administration")
+  publishedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("announcements")
+}
+
+model Attendance {
+  id        String   @id @default(uuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  date      DateTime @default(now())
+  status    String   // "PRESENT", "ABSENT", "EXCUSED", "LATE"
+  remark    String?
+
+  @@index([studentId, date])
+  @@map("attendances")
+}
+
+model Grade {
+  id          String   @id @default(uuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id])
+  term        String   // "Term 1", "Term 2", "Term 3"
+  academicYear String  @default("2026")
+  score       Float    // 0 - 100
+  letter      String   // A, B, C, D, E, F
+  remarks     String?
+  updatedAt   DateTime @updatedAt
+
+  @@unique([studentId, courseId, term, academicYear])
+  @@map("grades")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String   // "LOGIN", "REGISTER", "APPLICATION_SUBMIT", "GRADE_UPDATE"
+  details    String
+  ipAddress  String?
+  userAgent  String?
+  timestamp  DateTime @default(now())
+
+  @@index([action, timestamp])
+  @@map("audit_logs")
+}
